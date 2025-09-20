@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Leftover folders from restructuring
+geoimpact-app/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
