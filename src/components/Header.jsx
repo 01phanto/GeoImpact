@@ -2,11 +2,13 @@ import { Moon, Sun, Bell, BellRing, Search, Globe, Volume2, VolumeX, Settings, A
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatDistanceToNow } from 'date-fns'
-import logoSvg from '../assets/geoimpact-logo.svg'
 
 const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
   const [showAlertPanel, setShowAlertPanel] = useState(false)
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState(1)
+  
+  // Fallback mechanism for logo
+  const logoUrl = new URL('/assets/geoimpact-logo.svg', import.meta.url).href
 
   // Get alert system data if provided
   const {
@@ -56,12 +58,16 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
             {/* Logo with proper styling */}
             <div className="relative">
               <img 
-                src={logoSvg}
+                src={logoUrl}
                 alt="GeoImpact Logo" 
                 className="h-12 w-auto"
                 style={{ 
                   filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
                   maxWidth: '200px'
+                }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/GeoImpact/assets/geoimpact-logo.svg';
                 }}
               />
             </div>
