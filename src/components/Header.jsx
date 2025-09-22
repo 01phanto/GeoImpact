@@ -54,32 +54,24 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
         <div className="flex justify-between items-center py-4">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-4">
-            {/* Logo - Using your beautiful GeoImpact logo */}
+            {/* Logo with proper styling */}
             <div className="relative">
               <img 
-                src="/geoimpact-logo.svg" 
+                src={logoPath}
                 alt="GeoImpact Logo" 
-                className="h-16 w-16"
-                style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
+                className="h-12 w-auto"
+                style={{ 
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+                  maxWidth: '200px'
+                }}
               />
             </div>
             
             <div>
-              <h1 className="text-2xl font-bold">
-                <span style={{ color: '#FF6B35' }}>Geo</span>
-                <span style={{ color: '#0066CC' }}>Imp</span>
-                <span style={{ color: '#228B22' }}>act</span>
-              </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
                 How Geopolitics Impact India
               </p>
             </div>
-          </div>
-
-          {/* Search Bar */}
-          {/* Logo */}
-          <div className="flex items-center">
-            <img src={logoPath} alt="GeoImpact Logo" className="h-8 w-auto mr-4" />
           </div>
 
           <div className="hidden md:flex flex-1 max-w-lg mx-8">
