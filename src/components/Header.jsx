@@ -7,6 +7,8 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
   const [showAlertPanel, setShowAlertPanel] = useState(false)
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState(1)
 
+  const logoPath = '/GeoImpact/geoimpact-logo.svg'
+
   // Get alert system data if provided
   const {
     alerts = [],
@@ -75,6 +77,11 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
           </div>
 
           {/* Search Bar */}
+          {/* Logo */}
+          <div className="flex items-center">
+            <img src={logoPath} alt="GeoImpact Logo" className="h-8 w-auto mr-4" />
+          </div>
+
           <div className="hidden md:flex flex-1 max-w-lg mx-8">
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
