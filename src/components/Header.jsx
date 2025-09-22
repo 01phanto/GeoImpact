@@ -7,8 +7,20 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
   const [showAlertPanel, setShowAlertPanel] = useState(false)
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState(1)
   
-  // Fallback mechanism for logo
-  const logoUrl = new URL('/assets/geoimpact-logo.svg', import.meta.url).href
+  const GeoImpactLogo = () => (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 200 50" 
+      className="h-12 w-auto"
+      style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
+    >
+      <text x="10" y="35" style={{ font: 'bold 24px Arial' }}>
+        <tspan fill="#FF6B35">Geo</tspan>
+        <tspan fill="#0066CC">Imp</tspan>
+        <tspan fill="#228B22">act</tspan>
+      </text>
+    </svg>
+  )
 
   // Get alert system data if provided
   const {
@@ -57,19 +69,7 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
           <div className="flex items-center space-x-4">
             {/* Logo with proper styling */}
             <div className="relative">
-              <img 
-                src={logoUrl}
-                alt="GeoImpact Logo" 
-                className="h-12 w-auto"
-                style={{ 
-                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
-                  maxWidth: '200px'
-                }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/GeoImpact/assets/geoimpact-logo.svg';
-                }}
-              />
+              <GeoImpactLogo />
             </div>
             
             <div>
