@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/GeoImpact/',
   publicDir: 'public',
+  assetsInclude: ['**/*.svg'],
   server: {
     port: 5173,
     open: true
