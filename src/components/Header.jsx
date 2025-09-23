@@ -7,18 +7,20 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
   const [showAlertPanel, setShowAlertPanel] = useState(false)
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState(1)
   
-  const GeoImpactLogo = () => (
+  // Temporary placeholder logo
+  const PlaceholderLogo = () => (
     <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 200 50" 
+      width="48" 
+      height="48" 
+      viewBox="0 0 48 48" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
       className="h-12 w-auto"
       style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
     >
-      <text x="10" y="35" style={{ font: 'bold 24px Arial' }}>
-        <tspan fill="#FF6B35">Geo</tspan>
-        <tspan fill="#0066CC">Imp</tspan>
-        <tspan fill="#228B22">act</tspan>
-      </text>
+      <circle cx="24" cy="24" r="20" fill="#FF6B35"/>
+      <circle cx="24" cy="24" r="15" fill="#0066CC"/>
+      <circle cx="24" cy="24" r="10" fill="#228B22"/>
     </svg>
   )
 
@@ -69,7 +71,7 @@ const Header = ({ darkMode, setDarkMode, currentTime, alertSystem }) => {
           <div className="flex items-center space-x-4">
             {/* Logo with proper styling */}
             <div className="relative">
-              <GeoImpactLogo />
+              <PlaceholderLogo />
             </div>
             
             <div>
