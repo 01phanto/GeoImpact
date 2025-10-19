@@ -32,7 +32,7 @@ const formatText = (text: string): string => {
 };
 
 // Split text into paragraphs for better formatting
-const formatIntoParagraphs = (text: string): JSX.Element[] => {
+const formatIntoParagraphs = (text: string): React.ReactElement[] => {
   if (!text) return [];
   
   const cleanText = formatText(text);
@@ -70,11 +70,20 @@ const formatIntoParagraphs = (text: string): JSX.Element[] => {
   });
 };
 
+interface ArticleData {
+  title: string;
+  description: string;
+  content: string;
+  url: string;
+  source: string;
+  publishedAt: string;
+}
+
 export default function AnalysisPage() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [articleData, setArticleData] = useState<any>(null);
+  const [articleData, setArticleData] = useState<ArticleData | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
