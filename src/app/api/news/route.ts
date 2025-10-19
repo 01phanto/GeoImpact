@@ -56,14 +56,23 @@ export async function GET(request: NextRequest) {
       index === self.findIndex(a => a.title === article.title)
     );
     
+    interface NewsArticleRaw {
+      title?: string;
+      description?: string;
+      content?: string;
+      url?: string;
+      source?: { name?: string };
+      publishedAt?: string;
+      urlToImage?: string;
+    }
+    
     // Enhance descriptions for better quality
-    const enhancedArticles = uniqueArticles.map((article: any, index: number) => {
+    const enhancedArticles = uniqueArticles.map((article: NewsArticleRaw, index: number) => {
       let enhancedDescription = article.description || article.content || '';
       
       // If description is too short or missing, create a better one
       if (!enhancedDescription || enhancedDescription.length < 50) {
         const title = article.title || '';
-        const source = article.source?.name || 'reliable source';
         
         // Create contextual descriptions based on keywords
         if (title.toLowerCase().includes('china') || title.toLowerCase().includes('chinese')) {

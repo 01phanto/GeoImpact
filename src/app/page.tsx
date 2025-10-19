@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Spinner } from '@/components/ui/spinner';
 import { AlertCircle, RefreshCw, Filter, Clock } from 'lucide-react';
 import { NewsArticle } from '@/types';
@@ -230,7 +229,7 @@ export default function HomePage() {
           Global Geopolitical News Feed
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Stay informed about the latest global geopolitical developments and their impact on India's economy, diplomacy, and security. 
+          Stay informed about the latest global geopolitical developments and their impact on India&apos;s economy, diplomacy, and security. 
           Get AI-powered analysis of breaking news from around the world.
         </p>
         <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">

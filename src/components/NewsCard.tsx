@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, ExternalLink, Clock } from 'lucide-react';
+import { ExternalLink, Clock } from 'lucide-react';
 import { NewsArticle } from '@/types';
 
 interface NewsCardProps {
