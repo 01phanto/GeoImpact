@@ -32,31 +32,36 @@ A modern Next.js 15 application that provides AI-powered analysis of geopolitica
 ### Prerequisites
 - Node.js 18+ or Node.js 20+ (recommended)
 - npm, yarn, or pnpm
-- NewsAPI key (get free at [newsapi.org](https://newsapi.org))
-- Google Gemini API key (get free at [ai.google.dev](https://ai.google.dev))
+- NewsAPI key ([Get free key](https://newsapi.org/register))
+- Google Gemini API key ([Get free key](https://ai.google.dev/))
 
 ### Installation
 
-1. **Clone and install dependencies:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/01phanto/GeoImpact.git
+   cd GeoImpact
+   ```
+
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. **Environment Setup:**
+3. **Environment Setup:**
+   
    Create a `.env.local` file in the root directory:
    ```bash
    GOOGLE_API_KEY=your_google_gemini_api_key
    NEXT_PUBLIC_NEWS_API_KEY=your_newsapi_key
    ```
-   
-   Or use the pre-configured API keys in the code (not recommended for production).
 
-3. **Start the development server:**
+4. **Start the development server:**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser:**
+5. **Open your browser:**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🏗️ Project Structure
@@ -142,25 +147,20 @@ Filter news by topics:
 
 ## 🚀 Deployment
 
-### Environment Variables
-Before deploying, ensure you set up the following environment variables:
-```
-GOOGLE_API_KEY=your_google_gemini_api_key
-NEXT_PUBLIC_NEWS_API_KEY=your_newsapi_key
-```
-
-**Security Note**: The demo includes hardcoded API keys for quick setup. For production deployments, always use environment variables and never commit API keys to version control.
-
 ### Vercel (Recommended)
-1. Push to GitHub
-2. Connect to Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy automatically
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/01phanto/GeoImpact)
+
+1. Click the button above or connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard:
+   - `GOOGLE_API_KEY`
+   - `NEXT_PUBLIC_NEWS_API_KEY`
+3. Deploy automatically
 
 ### Other Platforms
-- **Netlify**: Static site generation with environment variables
-- **Railway**: Full-stack deployment with secrets management
-- **AWS**: EC2 or Lambda deployment with AWS Secrets Manager
+- **Netlify**: Connect repository and add environment variables
+- **Railway**: Deploy with built-in secrets management
+- **AWS Amplify**: Deploy with environment configuration
 
 ## 🛠️ Development
 
@@ -183,13 +183,15 @@ npm run lint         # Run ESLint
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the MIT License.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## 📞 Support
+
+For support or questions, please open an issue on GitHub.
 
 For support or questions, please open an issue on GitHub.
 
