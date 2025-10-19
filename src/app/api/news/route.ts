@@ -7,14 +7,24 @@ export async function GET(request: NextRequest) {
     const country = searchParams.get('country') || 'in';
     const category = searchParams.get('category') || 'general';
     
+    // Get API key from environment variable
+    const NEWS_API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
+    
+    if (!NEWS_API_KEY) {
+      return NextResponse.json(
+        { error: 'News API key is not configured' },
+        { status: 500 }
+      );
+    }
+    
     // Try multiple endpoints for comprehensive news coverage
     const endpoints = [
       // India-specific geopolitical news
-      `https://newsapi.org/v2/top-headlines?country=${country}&q=${query}&apiKey=ded83fb2081045cd9124fb45d2d1c896`,
+      `https://newsapi.org/v2/top-headlines?country=${country}&q=${query}&apiKey=${NEWS_API_KEY}`,
       // Global geopolitical news
-      `https://newsapi.org/v2/everything?q=${query}&sortBy=publishedAt&language=en&pageSize=20&apiKey=ded83fb2081045cd9124fb45d2d1c896`,
+      `https://newsapi.org/v2/everything?q=${query}&sortBy=publishedAt&language=en&pageSize=20&apiKey=${NEWS_API_KEY}`,
       // World news with geopolitical focus
-      `https://newsapi.org/v2/top-headlines?category=${category}&language=en&pageSize=15&apiKey=ded83fb2081045cd9124fb45d2d1c896`,
+      `https://newsapi.org/v2/top-headlines?category=${category}&language=en&pageSize=15&apiKey=${NEWS_API_KEY}`,
     ];
     
     let allArticles: any[] = [];
