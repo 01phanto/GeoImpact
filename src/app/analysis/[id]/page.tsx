@@ -104,7 +104,7 @@ export default function AnalysisPage() {
     analyzeArticle(article);
   }, [searchParams]);
 
-  const analyzeArticle = async (article: any) => {
+  const analyzeArticle = async (article: ArticleData) => {
     setLoading(true);
     setError(null);
     
@@ -133,7 +133,8 @@ export default function AnalysisPage() {
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | undefined) => {
+    if (!dateString) return 'Unknown date';
     return new Date(dateString).toLocaleDateString('en-IN', {
       year: 'numeric',
       month: 'long',
@@ -169,7 +170,7 @@ export default function AnalysisPage() {
             <Spinner className="h-8 w-8 mx-auto" />
             <div className="space-y-2">
               <p className="text-muted-foreground font-medium">Generating Comprehensive Analysis</p>
-              <p className="text-sm text-muted-foreground">Creating detailed 500-word report on India's impact...</p>
+              <p className="text-sm text-muted-foreground">Creating detailed 500-word report on India&apos;s impact...</p>
               <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
@@ -195,7 +196,7 @@ export default function AnalysisPage() {
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">{error}</p>
             <div className="flex gap-2">
-              <Button onClick={() => analyzeArticle(articleData)}>
+              <Button onClick={() => articleData && analyzeArticle(articleData)}>
                 Try Again
               </Button>
               <Button variant="outline" onClick={() => router.back()}>

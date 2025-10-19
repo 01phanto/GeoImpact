@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
       `https://newsapi.org/v2/top-headlines?category=${category}&language=en&pageSize=15&apiKey=${NEWS_API_KEY}`,
     ];
     
-    let allArticles: any[] = [];
+    let allArticles: NewsArticleRaw[] = [];
     
     // Fetch from multiple endpoints
     for (const endpoint of endpoints) {
