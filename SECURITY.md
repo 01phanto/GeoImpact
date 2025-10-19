@@ -42,10 +42,12 @@
 When you deploy to Vercel, add these environment variables in the Vercel dashboard:
 
 1. **GOOGLE_API_KEY**
-   Value: `AIzaSyBhZp4QBZwYqjiicc9hKhjZP2Lcu5D_vys`
+   - Get from: https://ai.google.dev/
+   - Add your own key here
 
 2. **NEXT_PUBLIC_NEWS_API_KEY**
-   Value: `ded83fb2081045cd9124fb45d2d1c896`
+   - Get from: https://newsapi.org/
+   - Add your own key here
 
 These will be securely stored in Vercel's encrypted environment.
 
