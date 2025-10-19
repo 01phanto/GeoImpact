@@ -15,6 +15,61 @@ const SENTIMENT_COLORS = {
   neutral: 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200',
 };
 
+// Format text to remove asterisks and improve readability
+const formatText = (text: string): string => {
+  if (!text) return '';
+  
+  return text
+    // Remove all asterisks
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    // Remove markdown headers
+    .replace(/^#+\s/gm, '')
+    // Clean up multiple newlines
+    .replace(/\n{3,}/g, '\n\n')
+    // Trim whitespace
+    .trim();
+};
+
+// Split text into paragraphs for better formatting
+const formatIntoParagraphs = (text: string): JSX.Element[] => {
+  if (!text) return [];
+  
+  const cleanText = formatText(text);
+  const paragraphs = cleanText.split(/\n\n+/).filter(p => p.trim().length > 0);
+  
+  return paragraphs.map((paragraph, index) => {
+    const trimmedParagraph = paragraph.trim();
+    
+    // Check if it's a numbered point (1), 2), etc.)
+    if (/^\d+\)/.test(trimmedParagraph)) {
+      const [number, ...rest] = trimmedParagraph.split(')');
+      return (
+        <div key={index} className="mb-4 pl-4 border-l-2 border-primary/30">
+          <span className="font-semibold text-primary">{number.trim()}.</span>
+          <span className="ml-2">{rest.join(')').trim()}</span>
+        </div>
+      );
+    }
+    
+    // Check if it's a section header (ends with colon and is short)
+    if (trimmedParagraph.endsWith(':') && trimmedParagraph.length < 100) {
+      return (
+        <h3 key={index} className="font-semibold text-lg mt-6 mb-3 text-foreground">
+          {trimmedParagraph}
+        </h3>
+      );
+    }
+    
+    // Regular paragraph
+    return (
+      <p key={index} className="mb-4 leading-relaxed text-muted-foreground">
+        {trimmedParagraph}
+      </p>
+    );
+  });
+};
+
 export default function AnalysisPage() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(true);
@@ -201,7 +256,9 @@ export default function AnalysisPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{analysis.summary}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {formatText(analysis.summary)}
+                </p>
               </CardContent>
             </Card>
 
@@ -213,7 +270,9 @@ export default function AnalysisPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{analysis.geopoliticalContext}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {formatText(analysis.geopoliticalContext)}
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -227,11 +286,15 @@ export default function AnalysisPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {analysis.keyTakeaways.map((takeaway, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-primary font-bold">{index + 1}.</span>
-                      <span className="text-muted-foreground">{takeaway}</span>
+                    <li key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+                        {index + 1}
+                      </span>
+                      <span className="text-muted-foreground leading-relaxed flex-1">
+                        {formatText(takeaway)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -266,10 +329,10 @@ export default function AnalysisPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="prose prose-sm max-w-none">
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {analysis.impactForIndia}
-                </p>
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                <div className="space-y-4">
+                  {formatIntoParagraphs(analysis.impactForIndia)}
+                </div>
               </div>
             </CardContent>
           </Card>
